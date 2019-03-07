@@ -1,35 +1,44 @@
 package math;
 
 public interface IVector {
-	
-	default public double ScalarProduct(double[] VEC1, double[] VEC2) {
-		double skalprod = VEC1[0] * VEC2[0] + VEC1[1] * VEC2[1];
-		return skalprod;
-	}
 
-	default public double MagnitudeOfVector(double[] VEC) {
-		return SQRT(ScalarProduct(VEC, VEC));
-	} /* Usage of native Math.sqrt-function weirdly lacks precision */
-
-	default public double[] ScalarMultiplication(double skalar, double[] VECTOR) {
-		double[] skalarmult = new double[2];
-		skalarmult[0] = skalar * VECTOR[0];
-		skalarmult[1] = skalar * VECTOR[1];
-		return skalarmult;
-	}
-
-	default public double[] UnitVector(double[] VEC) {
-		return ScalarMultiplication(1 / MagnitudeOfVector(VEC), VEC);
-	}
-
-	default public double[] AdditionOfVectors(double[] VEC1, double[] VEC2) {
-		double[] addarrays = new double[2];
+	default double[] AdditionOfVectors(double[] VEC1, double[] VEC2) {
+		final double[] addarrays = new double[2];
 		addarrays[0] = VEC1[0] + VEC2[0];
 		addarrays[1] = VEC1[1] + VEC2[1];
 		return addarrays;
 	}
 
-	default public double SQRT(double Square) {
+	default double MagnitudeOfVector(double[] VEC) {
+		return this.SQRT(this.ScalarProduct(VEC, VEC));
+	} /* Usage of native Math.sqrt-function weirdly lacks precision */
+
+	default double[] Projection(double[] X, double[] Y) {
+		return this.ScalarMultiplication(this.ScalarProduct(X, Y),
+				this.ScalarMultiplication(1 / this.MagnitudeOfVector(Y), Y));
+	}
+
+	default double[] ProjectionComplement(double[] X, double[] Y) {
+		return this.AdditionOfVectors(X, this.ReversalOfVector(this.Projection(X, Y)));
+	}
+
+	default double[] ReversalOfVector(double[] VEC) {
+		return this.ScalarMultiplication(-1, VEC);
+	}
+
+	default double[] ScalarMultiplication(double skalar, double[] VECTOR) {
+		final double[] skalarmult = new double[2];
+		skalarmult[0] = skalar * VECTOR[0];
+		skalarmult[1] = skalar * VECTOR[1];
+		return skalarmult;
+	}
+
+	default double ScalarProduct(double[] VEC1, double[] VEC2) {
+		final double skalprod = VEC1[0] * VEC2[0] + VEC1[1] * VEC2[1];
+		return skalprod;
+	}
+
+	default double SQRT(double Square) {
 		return (Math.sqrt(Square));
 		/*
 		 * double tmp=Square/2; while
@@ -38,16 +47,8 @@ public interface IVector {
 		 */
 	}
 
-	default public double[] ReversalOfVector(double[] VEC) {
-		return ScalarMultiplication(-1, VEC);
-	}
-
-	default public double[] Projection(double[] X, double[] Y) {
-		return ScalarMultiplication(ScalarProduct(X, Y), ScalarMultiplication(1 / MagnitudeOfVector(Y), Y));
-	}
-
-	default public double[] ProjectionComplement(double[] X, double[] Y) {
-		return AdditionOfVectors(X, ReversalOfVector(Projection(X, Y)));
+	default double[] UnitVector(double[] VEC) {
+		return this.ScalarMultiplication(1 / this.MagnitudeOfVector(VEC), VEC);
 	}
 
 }

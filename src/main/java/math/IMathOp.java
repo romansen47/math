@@ -1,5 +1,5 @@
 package math;
 
-public interface IMathOp extends IScalar,IVector{
+public interface IMathOp extends IScalar, IVector {
 
 }
