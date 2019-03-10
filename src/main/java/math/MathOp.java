@@ -13,8 +13,7 @@ public class MathOp implements IMathOp {
 
 	public static IMathOp getInstance(double SquareRootCorrectness) {
 		if (MathOp.instance == null) {
-			final IMathOp inst = new MathOp(SquareRootCorrectness);
-			return inst;
+			return new MathOp(SquareRootCorrectness);
 		}
 		return MathOp.instance;
 	}
