@@ -25,7 +25,7 @@ public class MathOp implements IMathOp {
 	}
 
 	public double getSquareRootCorrectness() {
-		return this.SquareRootCorrectness;
+		return SquareRootCorrectness;
 	}
 
 }

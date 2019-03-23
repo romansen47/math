@@ -10,20 +10,19 @@ public interface IVector {
 	}
 
 	default double MagnitudeOfVector(double[] VEC) {
-		return this.SQRT(this.ScalarProduct(VEC, VEC));
+		return SQRT(ScalarProduct(VEC, VEC));
 	} /* Usage of native Math.sqrt-function weirdly lacks precision */
 
 	default double[] Projection(double[] X, double[] Y) {
-		return this.ScalarMultiplication(this.ScalarProduct(X, Y),
-				this.ScalarMultiplication(1 / this.MagnitudeOfVector(Y), Y));
+		return ScalarMultiplication(ScalarProduct(X, Y), ScalarMultiplication(1 / MagnitudeOfVector(Y), Y));
 	}
 
 	default double[] ProjectionComplement(double[] X, double[] Y) {
-		return this.AdditionOfVectors(X, this.ReversalOfVector(this.Projection(X, Y)));
+		return AdditionOfVectors(X, ReversalOfVector(Projection(X, Y)));
 	}
 
 	default double[] ReversalOfVector(double[] VEC) {
-		return this.ScalarMultiplication(-1, VEC);
+		return ScalarMultiplication(-1, VEC);
 	}
 
 	default double[] ScalarMultiplication(double skalar, double[] VECTOR) {
@@ -48,7 +47,7 @@ public interface IVector {
 	}
 
 	default double[] UnitVector(double[] VEC) {
-		return this.ScalarMultiplication(1 / this.MagnitudeOfVector(VEC), VEC);
+		return ScalarMultiplication(1 / MagnitudeOfVector(VEC), VEC);
 	}
 
 }
