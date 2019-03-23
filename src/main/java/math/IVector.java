@@ -4,14 +4,17 @@ public interface IVector {
 
 	default double[] AdditionOfVectors(double[] VEC1, double[] VEC2) {
 		final double[] addarrays = new double[2];
-		addarrays[0] = VEC1[0] + VEC2[0];
-		addarrays[1] = VEC1[1] + VEC2[1];
+		addarrays[0]	= VEC1[0] + VEC2[0];
+		addarrays[1]	= VEC1[1] + VEC2[1];
 		return addarrays;
 	}
 
 	default double MagnitudeOfVector(double[] VEC) {
 		return SQRT(ScalarProduct(VEC, VEC));
-	} /* Usage of native Math.sqrt-function weirdly lacks precision */
+	} /*
+		 * Usage of native Math.sqrt-function
+		 * weirdly lacks precision
+		 */
 
 	default double[] Projection(double[] X, double[] Y) {
 		return ScalarMultiplication(ScalarProduct(X, Y), ScalarMultiplication(1 / MagnitudeOfVector(Y), Y));
@@ -27,8 +30,8 @@ public interface IVector {
 
 	default double[] ScalarMultiplication(double skalar, double[] VECTOR) {
 		final double[] skalarmult = new double[2];
-		skalarmult[0] = skalar * VECTOR[0];
-		skalarmult[1] = skalar * VECTOR[1];
+		skalarmult[0]	= skalar * VECTOR[0];
+		skalarmult[1]	= skalar * VECTOR[1];
 		return skalarmult;
 	}
 
@@ -41,8 +44,10 @@ public interface IVector {
 		return (Math.sqrt(Square));
 		/*
 		 * double tmp=Square/2; while
-		 * (Abs(tmp*tmp-Square)>Config.SquareRootCorrectness){ tmp=0.5*(tmp+Square/tmp);
-		 * } return tmp;
+		 * (Abs(tmp*tmp-Square)>Config.
+		 * SquareRootCorrectness){
+		 * tmp=0.5*(tmp+Square/tmp); } return
+		 * tmp;
 		 */
 	}
 
