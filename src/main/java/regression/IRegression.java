@@ -1,6 +1,6 @@
 package regression;
 
-public interface IRegression {
+public interface IRegression{
 
 	functions.IPolynomial getPolynomial();
 

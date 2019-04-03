@@ -5,32 +5,38 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-
 import proprietary.StdDraw;
 
 public class RegressionTest {
 
+	final static String path="src/main/resources/test.csv";
+	
 	static int xm;
 	
-	final static int degree=40;
+	final static int degree=43;
 	
 	static double[][] values;
 	
 	public static void main(String[] args) throws IOException {
-		values=readFile("src/main/resources/test.csv");
+		values=readFile(path);
 		List<IRegression> LinRegs=new ArrayList<>();
 		for (int i=0;i<degree;i++) {
 			IRegression tmpReg=new LinReg(values,i);
 			LinRegs.add(tmpReg);
-			System.out.println("Regression "+i+"-ter Ordnung: Abstand="+tmpReg.getDistance());
 		}
-		solveAndDraw(degree);		
+		List<Integer> sort=evaluateMoveList(LinRegs);
+		for (int i=0;i<degree;i++) {
+			System.out.println("Regression "+LinRegs.get(i).getPolynomial().getDegree()
+					+"-ter Ordnung: Abstand="+LinRegs.get(i).getDistance());
+		}
+		solveAndDraw(LinRegs.get(0));		
 	}
 	
-	public static void solveAndDraw(int degr) {
+	public static void solveAndDraw(IRegression reg) {
 		
-		final IRegression reg=new LinReg(values,degr);
 		xm=reg.getPolynomial().getCoefficients().length;
 		StdDraw stddraw=new StdDraw();
 		stddraw.setCanvasSize(2000, 1500);
@@ -47,8 +53,26 @@ public class RegressionTest {
         for (double i = 0.0; i < values[0].length; i+=1/prec) {
         	StdDraw.line(i, reg.getPolynomial().eval(i),i+1/prec, reg.getPolynomial().eval(i+1/prec));
         }
-		
-        System.out.println("Regression "+degr+"-ten Grades");
+        System.out.println("");
+        System.out.println("Baste Naeherung Regression "+reg.getPolynomial().getDegree()+"-ten Grades geplottet");
+	}
+	
+	private static List<Integer> evaluateMoveList(List<IRegression> linRegs) {
+		class SortByEval implements Comparator<IRegression> {
+			// Used for sorting in ascending order
+			// of
+			// roll number
+			@Override
+			public int compare(IRegression o1, IRegression o2) {
+				return (int)(o1.getDistance()-o2.getDistance());
+			}
+		}
+		Collections.sort(linRegs, new SortByEval());
+		List<Integer> sortedMoves = new ArrayList<>();
+		for (IRegression reg : linRegs) {
+			sortedMoves.add(new Integer((int) reg.getDistance()));
+		}
+		return sortedMoves;
 	}
 	
 	static double[][] readFile(String string) throws IOException {
