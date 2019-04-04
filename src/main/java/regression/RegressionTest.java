@@ -16,12 +16,24 @@ public class RegressionTest {
 	
 	static int xm;
 	
-	final static int degree=43;
+	final static int degree=40;
 	
 	static double[][] values;
 	
 	public static void main(String[] args) throws IOException {
+		
 		values=readFile(path);
+		
+//		values=new double[2][100];
+//		for (int i=0;i<50;i++) {
+//			values[0][i]=i;
+//			values[1][i]=i;
+//		}
+//		for (int i=50;i<100;i++) {
+//			values[0][i]=i;
+//			values[1][i]=-100+i;
+//		}
+		
 		List<IRegression> LinRegs=new ArrayList<>();
 		for (int i=0;i<degree;i++) {
 			IRegression tmpReg=new LinReg(values,i);
@@ -32,36 +44,35 @@ public class RegressionTest {
 			System.out.println("Regression "+LinRegs.get(i).getPolynomial().getDegree()
 					+"-ter Ordnung: Abstand="+LinRegs.get(i).getDistance());
 		}
-		solveAndDraw(LinRegs.get(0));		
-	}
-	
-	public static void solveAndDraw(IRegression reg) {
-		
-		xm=reg.getPolynomial().getCoefficients().length;
 		StdDraw stddraw=new StdDraw();
-		stddraw.setCanvasSize(2000, 1500);
+		stddraw.setCanvasSize(1500, 1000);
 		StdDraw.setXscale(0, values[0][values[0].length-1]);
-		StdDraw.setYscale(0.0, 50.0);
+		StdDraw.setYscale(10.0, 30.0);
 
 		StdDraw.setPenRadius(0.01);
-        for (int i = 0; i < values[0].length-1; i+=5) {
+		for (int i = 0; i < values[0].length-1; i+=3) {
         	StdDraw.point(values[0][i], values[1][i]);
         }
-        
-		StdDraw.setPenColor(Color.RED);
-        double prec=0.1;
-        for (double i = 0.0; i < values[0].length; i+=1/prec) {
-        	StdDraw.line(i, reg.getPolynomial().eval(i),i+1/prec, reg.getPolynomial().eval(i+1/prec));
-        }
         System.out.println("");
-        System.out.println("Baste Naeherung Regression "+reg.getPolynomial().getDegree()+"-ten Grades geplottet");
+		solveAndDraw(LinRegs.get(0),Color.RED);
+//		solveAndDraw(LinRegs.get(1),Color.BLUE);
+//		solveAndDraw(LinRegs.get(2),Color.GREEN);
+	}
+	
+	public static void solveAndDraw(IRegression reg,Color col) {
+		
+		xm=reg.getPolynomial().getCoefficients().length;
+        
+		StdDraw.setPenColor(col);
+        double prec=0.5;
+        for (double i = 0.0; i < values[0].length-1; i+=prec) {
+        	StdDraw.line(i, reg.getPolynomial().eval(i),i+prec, reg.getPolynomial().eval(i+prec));
+        }
+        System.out.println("Regression "+reg.getPolynomial().getDegree()+"-ten Grades geplottet");
 	}
 	
 	private static List<Integer> evaluateMoveList(List<IRegression> linRegs) {
 		class SortByEval implements Comparator<IRegression> {
-			// Used for sorting in ascending order
-			// of
-			// roll number
 			@Override
 			public int compare(IRegression o1, IRegression o2) {
 				return (int)(o1.getDistance()-o2.getDistance());
