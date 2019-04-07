@@ -1,5 +1,15 @@
 package regression;
 
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.ArrayRealVector;
+import org.apache.commons.math3.linear.DecompositionSolver;
+import org.apache.commons.math3.linear.LUDecomposition;
+import org.apache.commons.math3.linear.QRDecomposition;
+import org.apache.commons.math3.linear.RRQRDecomposition;
+import org.apache.commons.math3.linear.RealLinearOperator;
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.RealVector;
+
 import functions.IPolynomial;
 import matrix.GaussianElimination;
 
@@ -49,8 +59,19 @@ public class LinReg extends Regression{
 				}
 			}
 		}
+		
 		matrix.IMatrixTrix matOp=new matrix.MatrixOperator();
 		double[] ans=GaussianElimination.lsolve(Matrix,b);
+		
+		
+//		We can use Apache.commons.math .. This is slow and is not more accurate. Hence skipping here...
+//		RealMatrix apacheMatrix=new Array2DRowRealMatrix(Matrix,false);
+//		DecompositionSolver solver = new LUDecomposition(apacheMatrix).getSolver();
+		
+//		RealVector constants = new ArrayRealVector(b, false);
+//		RealVector solution = solver.solve(constants);
+//		double[] ans = solution.toArray();
+		
 		return new functions.Polynomial(ans);//matOp.matrixMult(matOp.inverse(Matrix), b));
 	}
 

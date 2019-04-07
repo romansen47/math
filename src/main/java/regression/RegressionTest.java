@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,11 +14,11 @@ import proprietary.StdDraw;
 
 public class RegressionTest {
 
-	final static String path="src/main/resources/test.csv";
+	final static String path="src/main/resources/test2.csv";
 	
 	static int xm;
 	
-	final static int degree=40;
+	final static int degree=30;
 	
 	static double[][] values;
 	
@@ -24,22 +26,24 @@ public class RegressionTest {
 		
 		values=readFile(path);
 		
-//		values=new double[2][100];
-//		for (int i=0;i<50;i++) {
-//			values[0][i]=i;
-//			values[1][i]=i;
-//		}
-//		for (int i=50;i<100;i++) {
-//			values[0][i]=i;
-//			values[1][i]=-100+i;
-//		}
+		double min=values[1][0];
+		double max=values[1][0];
+		
+		for (int i=1;i<values[0].length;i++) {
+			if (min>values[1][i]) {
+				min=values[1][i];
+			}
+			if (max<values[1][i]) {
+				max=values[1][i];
+			}
+		}
 		
 		List<IRegression> LinRegs=new ArrayList<>();
 		for (int i=0;i<degree;i++) {
 			IRegression tmpReg=new LinReg(values,i);
 			LinRegs.add(tmpReg);
 		}
-		List<Integer> sort=evaluateMoveList(LinRegs);
+		evaluateMoveList(LinRegs);
 		for (int i=0;i<degree;i++) {
 			System.out.println("Regression "+LinRegs.get(i).getPolynomial().getDegree()
 					+"-ter Ordnung: Abstand="+LinRegs.get(i).getDistance());
@@ -47,26 +51,26 @@ public class RegressionTest {
 		StdDraw stddraw=new StdDraw();
 		stddraw.setCanvasSize(1500, 1000);
 		StdDraw.setXscale(0, values[0][values[0].length-1]);
-		StdDraw.setYscale(10.0, 30.0);
+		StdDraw.setYscale(min-10,max+10);
 
 		StdDraw.setPenRadius(0.01);
-		for (int i = 0; i < values[0].length-1; i+=3) {
+		for (int i = 0; i < values[0].length-1; i+=1) {
         	StdDraw.point(values[0][i], values[1][i]);
         }
+		
+
         System.out.println("");
 		solveAndDraw(LinRegs.get(0),Color.RED);
-//		solveAndDraw(LinRegs.get(1),Color.BLUE);
-//		solveAndDraw(LinRegs.get(2),Color.GREEN);
 	}
 	
 	public static void solveAndDraw(IRegression reg,Color col) {
-		
 		xm=reg.getPolynomial().getCoefficients().length;
-        
-		StdDraw.setPenColor(col);
-        double prec=0.5;
-        for (double i = 0.0; i < values[0].length-1; i+=prec) {
-        	StdDraw.line(i, reg.getPolynomial().eval(i),i+prec, reg.getPolynomial().eval(i+prec));
+		StdDraw.setPenRadius(0.01);
+        double prec=10.0;
+        for (int i = 0; i < values[0].length-1; i+=prec) {
+    		StdDraw.setPenColor(col);
+        	StdDraw.line(values[0][i], reg.getPolynomial().eval(values[0][i]),
+        					values[0][i]+prec, reg.getPolynomial().eval(values[0][i]+prec));
         }
         System.out.println("Regression "+reg.getPolynomial().getDegree()+"-ten Grades geplottet");
 	}
@@ -92,10 +96,18 @@ public class RegressionTest {
 		@SuppressWarnings("resource")
 		BufferedReader br = new BufferedReader(new FileReader(string));
 		String line="";
+		LocalDate firstDate=null;
 		while ((line=br.readLine())!=null) {
 			String[] parts=line.split(";");
+			String[] tmpdate=parts[0].split("-");
+			LocalDate date=LocalDate.of(Integer.parseInt(tmpdate[0]),
+										Integer.parseInt(tmpdate[1]),
+										Integer.parseInt(tmpdate[2]));
+			if (firstDate==null) {
+				firstDate=date;
+			}
 			double[] tmp=new double[2];
-			tmp[0]=Double.parseDouble(parts[0]);
+			tmp[0]=firstDate.until(date,ChronoUnit.DAYS);
 			tmp[1]=Double.parseDouble(parts[1]);
 			values.add(tmp);
 		}
