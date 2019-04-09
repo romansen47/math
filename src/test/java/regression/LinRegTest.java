@@ -2,14 +2,15 @@ package regression;
 
 import java.awt.Color;
 import java.util.Random;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class LinRegTest {
 
 	final Random random=new Random();
-	final int finalDegree=15;
+	final int finalDegree=11;
 	double[][] values;
 	final double tolerance=25;
 	final double correctness=0.05;
@@ -34,7 +35,7 @@ public class LinRegTest {
 			} catch( Exception e) {
 				e.printStackTrace();
 			}
-			Assert.assertTrue(reg.getDistance()<tolerance);
+			assertTrue(reg.getDistance()<tolerance);
 			System.out.println("Guete der Regression "+(degree-1)+"-ter Ordnung: "+reg.getDistance()+". ");
 		}
 		
