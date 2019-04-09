@@ -1,15 +1,5 @@
 package regression;
 
-import org.apache.commons.math3.linear.Array2DRowRealMatrix;
-import org.apache.commons.math3.linear.ArrayRealVector;
-import org.apache.commons.math3.linear.DecompositionSolver;
-import org.apache.commons.math3.linear.LUDecomposition;
-import org.apache.commons.math3.linear.QRDecomposition;
-import org.apache.commons.math3.linear.RRQRDecomposition;
-import org.apache.commons.math3.linear.RealLinearOperator;
-import org.apache.commons.math3.linear.RealMatrix;
-import org.apache.commons.math3.linear.RealVector;
-
 import functions.IPolynomial;
 import matrix.GaussianElimination;
 
@@ -18,24 +8,23 @@ public class LinReg extends Regression{
 	final functions.IPolynomial polynomial;
 	final int kmax;
 	final int degree;
-	public double distance;
 	
 	public LinReg(double[][] values, int degree) {
 		super(values);
 		this.degree=degree+1;
-		this.distance=0;
+		this.setDistance(0);
 		if (values.length<2) {
 			System.err.println("Need 2 rows for x and y values...");
 			System.exit(1);
 		}
-		else if(values[0].length<=this.degree) {
+		else if(values[0].length<this.degree) {
 			System.err.println("Degree is to high; otherwise need more values...");
 			System.exit(1);
 		}
 		kmax=values[0].length;
 		polynomial = computePolynomial(values);
 		for (int i=0;i<values[0].length;i++) {
-			distance+=Math.pow(values[1][i]-polynomial.eval(values[0][i]), 2);
+			setDistance(getDistance() + Math.pow(values[1][i]-polynomial.eval(values[0][i]), 2));
 		}
 	}
 
@@ -43,7 +32,7 @@ public class LinReg extends Regression{
 		
 		double[] x=values[0];
 		double[] y=values[1];
-		double[][] Matrix=new double[degree][degree];
+		double[][] matrix=new double[degree][degree];
 		double[] b=new double[degree];
 		
 		for (int m=0;m<degree;m++) {
@@ -55,16 +44,16 @@ public class LinReg extends Regression{
 		for (int m=0;m<degree;m++) {
 			for (int j=0;j<degree;j++) {
 				for (int k=0;k<kmax;k++) {
-					Matrix[m][j]+=Math.pow(x[k],m+j);
+					matrix[m][j]+=Math.pow(x[k],m+j);
 				}
 			}
 		}
 		
-		matrix.IMatrixTrix matOp=new matrix.MatrixOperator();
-		double[] ans=GaussianElimination.lsolve(Matrix,b);
+		//matrix.IMatrixTrix matOp=new matrix.MatrixOperator();
+		double[] ans=GaussianElimination.lsolve(matrix,b);
 		
 		
-//		We can use Apache.commons.math .. This is slow and is not more accurate. Hence skipping here...
+//		We could use Apache.commons.math .. This is slow and is not more accurate. Hence skipping here...
 //		RealMatrix apacheMatrix=new Array2DRowRealMatrix(Matrix,false);
 //		DecompositionSolver solver = new LUDecomposition(apacheMatrix).getSolver();
 		
@@ -79,12 +68,5 @@ public class LinReg extends Regression{
 	public IPolynomial getPolynomial() {
 		return polynomial;
 	}
-
-	@Override
-	public double getDistance() {
-		return distance;
-	}
-	
-	
 	
 }

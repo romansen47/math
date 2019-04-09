@@ -591,13 +591,14 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
      * after each line(), circle(), or square(). This is useful when there
      * are many methods to call to draw a complete picture.
      * @param t number of milliseconds
+     * @throws InterruptedException 
      */
-    public static void show(int t) {
+    public static void show(int t) throws InterruptedException {
         defer = true;
         onscreen.drawImage(offscreenImage, 0, 0, null);
         frame.repaint();
-        try { Thread.currentThread().sleep(t); }
-        catch (InterruptedException e) { System.out.println("Error sleeping"); }
+        Thread.sleep(t); 
+        System.out.println("Error sleeping");
     }
 
 
