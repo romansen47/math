@@ -11,21 +11,21 @@ public class MathOp implements IMathOp {
 		return MathOp.instance;
 	}
 
-	public static IMathOp getInstance(double SquareRootCorrectness) {
+	public static IMathOp getInstance(double squareRootCorrectness) {
 		if (MathOp.instance == null) {
-			return new MathOp(SquareRootCorrectness);
+			return new MathOp(squareRootCorrectness);
 		}
 		return MathOp.instance;
 	}
 
-	final private double SquareRootCorrectness;
+	private final double squareRootCorrectness;
 
-	private MathOp(double SquareRootCorrectness) {
-		this.SquareRootCorrectness = SquareRootCorrectness;
+	MathOp(double squareRootCorrectness) {
+		this.squareRootCorrectness = squareRootCorrectness;
 	}
 
 	public double getSquareRootCorrectness() {
-		return SquareRootCorrectness;
+		return squareRootCorrectness;
 	}
 
 }
