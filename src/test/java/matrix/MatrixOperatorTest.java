@@ -63,10 +63,10 @@ public class MatrixOperatorTest {
 		double[][] inverse2=MatOp.inverse(Matrix2);
 
 		assertTrue(same(MatOp.matrixMult(inverse1, vec1),vec2));
-		assertTrue(same(MatOp.matrixMult(inverse1, vec1),vec2));
-		
 		assertTrue(same(MatOp.matrixMult(inverse1, vec2),new double[] {-1,0}));
-		assertTrue(same(MatOp.matrixMult(inverse2, vec2),vec1));
+		
+		assertTrue(same(MatOp.matrixMult(inverse2, vec1),vec1));
+		assertTrue(same(MatOp.matrixMult(inverse2, vec2),new double[] {0,-1}));
 	}
 
 	public boolean same(double[] vec1, double[] vec2) {
