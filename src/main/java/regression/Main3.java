@@ -15,12 +15,13 @@ public class Main3 extends regression.Main{
 		values=readFile(PATH);
 		double[][] newvals=centralize(values);
 		double min=200000.0;
+		//double max=getMax(newvals);
 		double a0=0;
 		double b0=0;
 		double c0=0;
-		for (double a=0.0;a<50;a++) {
-			for (double b=0;b<50;b+=0.1) {
-				for (double c=0.0;c<50;c+=0.1) {
+		for (double a=5.0;a<7;a+=0.01) {
+			for (double b=0;b<3.14;b+=0.10) {
+				for (double c=0.001;c<0.01;c+=0.0001) {
 					double val=val(a,b,c,newvals);
 					if (val<min) {
 						a0=a;
@@ -32,20 +33,31 @@ public class Main3 extends regression.Main{
 			}
 		}
 		IRegression reg=new LinReg(values,1);
-		System.out.println(reg.getPolynomial().toString()+","+a0+"*sin("+b0+"+"+c0+"*x");
-		
-		double[][] valsToPlot=new double[2][values[0].length];
+		double[] alpha=reg.getPolynomial().getCoefficients();
+		System.out.println(alpha[0]+"+"+alpha[1]+"*x"+" + "+a0+"*sin("+b0+"+"+c0+"*x");
+
+		double[][] valsToPlot=new double[2][2*values[0].length];
+		double[][] altInput=new double[2][2*values[0].length];
 		for (int i=0;i<values[0].length;i++) {
+			altInput[0][i]=values[0][i];
+			altInput[1][i]=values[1][i];
 			valsToPlot[0][i]=values[0][i];
 			valsToPlot[1][i]=reg.getPolynomial().eval(values[0][i])+a0*Math.sin(b0+c0*values[0][i]);
 		}
-		IRegression.preparePlot(values,DIMX,DIMY);
-		IRegression.drawInput(values);
+		for (int i=values[0].length;i<2*values[0].length;i++) {
+			altInput[0][i]=values[0][values[0].length-1]-values[0].length+i;
+			altInput[1][i]=reg.getPolynomial().eval(altInput[0][i]);
+			valsToPlot[0][i]=values[0][values[0].length-1]-values[0].length+i;
+			valsToPlot[1][i]=reg.getPolynomial().eval(valsToPlot[0][i])+a0*Math.sin(b0+c0*valsToPlot[0][i]);
+		}
+		IRegression.preparePlot(altInput,2*DIMX,DIMY);
+		IRegression.drawInput(altInput);
 		StdDraw.setPenRadius(0.01);
-        for (int i = 0; i < values[0][values[0].length-1]; i+=1) {
-    		StdDraw.setPenColor(Color.BLACK);
+        for (int i = 0; i < valsToPlot[0].length-1; i+=1) {
+    		StdDraw.setPenColor(Color.RED);
         	StdDraw.line(valsToPlot[0][i],valsToPlot[1][i],valsToPlot[0][i+1],valsToPlot[1][i+1]);
         }
+        
 	}
 	
 	private static double val(double a, double b, double c, double[][] values) {
