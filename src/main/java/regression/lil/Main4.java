@@ -120,8 +120,8 @@ public class Main4 extends regression.Main{
 //			String test=data[i].toString()+"\r";
 //			writer2.write(test);
 //		}
-		int lastday=data[0].
-	    System.out.println(fun.value(input));
+		//int lastday=data[0].
+	    //System.out.println(fun.value(input));
 	}
 
 	private static double correlation(double[] ds, double[] ds2) {
