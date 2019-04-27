@@ -20,7 +20,7 @@ public class MathOp implements IMathOp {
 
 	private final double squareRootCorrectness;
 
-	MathOp(double squareRootCorrectness) {
+	public MathOp(double squareRootCorrectness) {
 		this.squareRootCorrectness = squareRootCorrectness;
 	}
 
