@@ -13,7 +13,7 @@ import regression.IRegression;
 import regression.LinReg;
 import regression.Minimizer;
 
-public class Main4 extends regression.Main{
+public class Main5 extends regression.Main{
 		
 	static double[][] vals;
 	static double[][] newvals;
@@ -25,31 +25,38 @@ public class Main4 extends regression.Main{
         final IFunction fun=new Function() {
         	@Override
         	public double value(double[] point) {
-        		return val(point[0],point[1],point[2],point[3],point[4],newvals)*1.e-10;
+        		return val(point[0],point[1],point[2],point[3],point[4],point[5],point[6],point[7],newvals)*1.e-10;
         	}
         };
         
-        double a=20;
-        double b=0;
-        double[] coeffs=new Minimizer(fun).find(new double[] {a,b,7,3,0.0026580});
+        double a=22.38025511590738;
+        double b= -5.180721801045054E-4;
+        double[] coeffs=new Minimizer(fun).find(new double[] {a, b, 5.952057839617729 , 2.494323292555835 , 0.0026746014893392765 ,
+        														0.01,0.01,0.01});
 
-        System.out.println("Wert: "+val(a, b,5.750578,2.42977512,3.002701427,newvals));
-        System.out.println("Wert: "+val(coeffs[0], coeffs[1], coeffs[2],
-        		coeffs[3], coeffs[4], newvals));
-        double correlation=correlation(values[0],values[1]);
-        System.out.println("Korrelationskoeffizient = "+correlation);
         
         IFunction reg=new Function(){
     		@Override
-    		public double value(double[]input) {
+    		public double value(double[] input) {
     			return coeffs[0]+coeffs[1]*input[0]
-    					+coeffs[2]*Math.sin(coeffs[3]+coeffs[4]*input[0]);
+    					+coeffs[2]*Math.sin(coeffs[3]+coeffs[4]*input[0])
+    					+coeffs[5]*Math.cos(coeffs[6]+coeffs[7]*input[0]);
     		}
     	};
     	
+
+        double correlation=correlation(values[0],values[1]);
         printDataToXml(coeffs,newvals,reg,correlation);
         System.out.println("Regression: f(x) = "+coeffs[0]+" + ( "+coeffs[1]+" ) * x + "
         						+coeffs[2]+" * sin ( "+coeffs[3]+" + "+coeffs[4]+" * x )");
+        System.out.println("     + "+coeffs[5]+" * cos ( "+coeffs[6]+" + "+coeffs[7]+" * x )");
+        
+        System.out.println("Wert: "+val(a, b, 5.952057839617729 , 2.494323292555835 , 0.0026746014893392765 ,0,0,0,newvals));
+        
+        System.out.println("");
+        System.out.println("Wert: "+val(coeffs[0], coeffs[1], coeffs[2],
+        		coeffs[3], coeffs[4],coeffs[5],coeffs[6],coeffs[7], newvals));
+        System.out.println("Korrelationskoeffizient = "+correlation);
         
         
 	}
@@ -85,10 +92,11 @@ public class Main4 extends regression.Main{
 	}
 
 	
-	private static double val(double a, double b, double c, double d, double e, double[][] values) {
+	private static double val(double a, double b, double c, double d, double e, double f, double g, double h, double[][] values) {
 		double ans=0.0;
 		for (int i=0;i<values[0].length;i++) {
-			ans+=Math.pow(values[1][i]-a-b*values[0][i]-c*Math.sin(d+e*values[0][i]),2);
+			ans+=Math.pow(values[1][i]-a-b*values[0][i]-c*Math.sin(d+e*values[0][i])
+							-f*Math.cos(g+h*values[0][i]),2);
 		}
 		return ans;
 	}

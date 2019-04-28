@@ -10,7 +10,7 @@ public class Minimizer {
 	final IFunction fun;
 	final Derivative der;
 	
-	final double eps=1.e-6;
+	final double eps=1.e-7;
 	
 	public Minimizer(IFunction fun) {
 		this.fun=fun;
@@ -34,7 +34,6 @@ public class Minimizer {
 		}
 		RealVector tmpdelta=new LUDecomposition(MatrixUtils.createRealMatrix(der.HesseMatrix(tmp)))
 				.getSolver().solve(MatrixUtils.createRealVector((der).Gradient(tmp)));
-		//double[] delta=GaussianElimination.lsolve(der.HesseMatrix(tmp),der.Gradient(tmp));
 		for (int i=0;i<tmp.length;i++) {
 			ans[i]-=tmpdelta.getEntry(i);
 		}
