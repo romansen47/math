@@ -66,6 +66,18 @@ public class Binary{
 		System.out.println();
 	}
 	
+	@Override
+	public String toString() {
+		String str="";
+		for (int i=0;i<this.length;i++){
+			if (this.tuple[this.length-1-i]==true) { 
+				str+=1; 
+			}
+			str+=0; 
+		}
+		return str;
+	}
+	
 	public void dezimal(){
 		if (this.length==1){
 			if (this.tuple[0]==true) {

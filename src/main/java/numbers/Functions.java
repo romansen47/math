@@ -12,7 +12,7 @@ public class Functions
 			ans.addone();
 			tmp.subone();
 		}
-		return(ans);
+		return(ans); 
 	}
 	
 	public static Binary add2(Binary A, Binary B)

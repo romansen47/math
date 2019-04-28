@@ -1,7 +1,7 @@
 package numbers;
 public class Natural
 {
-	static int MAX=2147483647;
+	static int MAX=2147483647; 
 	
 	int[] tuple;
 	int length;
