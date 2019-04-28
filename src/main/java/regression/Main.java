@@ -14,11 +14,11 @@ import java.util.List;
 
 public class Main {
 
-	static final String PATH="src/main/resources/test2.csv";
+	protected static final String PATH="src/main/resources/test2.csv";
 	static final int DEGREE=11;
-	static final int DIMX=1000;
-	static final int DIMY=700;
-	static double[][] values;
+	static final int DIMX=500;
+	static final int DIMY=300;
+	protected static double[][] values;
 	
 	public static void main(String[] args) throws IOException {
 		
@@ -58,7 +58,7 @@ public class Main {
 		return sortedMoves;
 	}
 	
-	static double[][] readFile(String string) throws IOException {
+	protected static double[][] readFile(String string) throws IOException {
 		List<double[]> values = new ArrayList<>();
 		@SuppressWarnings("resource")
 		final BufferedReader br = new BufferedReader(new FileReader(string));

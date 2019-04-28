@@ -10,6 +10,9 @@ public interface IVector {
 	}
 
 	default double MagnitudeOfVector(double[] VEC) {
+		if (VEC.length<2) {
+			return Math.abs(VEC[0]);
+		}
 		return SQRT(ScalarProduct(VEC, VEC));
 	} /*
 		 * Usage of native Math.sqrt-function
