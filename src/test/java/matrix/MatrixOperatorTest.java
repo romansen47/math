@@ -5,14 +5,18 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import math.matrix.IMatrixTrix;
+import math.matrix.MatrixOperator;
+
 public class MatrixOperatorTest {
 
+	final IMatrixTrix MatOp=MatrixOperator.getInstance();
+	
 	public final double tolerance=1.e-5;
 	private static double[][] Matrix1=new double[2][2];
 	private static double[][] Matrix2=new double[2][2];
 	private static double[] vec1		=new double[2];
 	private static double[] vec2		=new double[2];
-	final IMatrixTrix MatOp=new MatrixOperator();
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

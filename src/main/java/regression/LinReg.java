@@ -1,7 +1,7 @@
 package regression;
 
 import functions.IPolynomial;
-import matrix.GaussianElimination;
+import math.matrix.GaussianElimination;
 
 public class LinReg extends Regression{
 	

@@ -6,9 +6,9 @@ public class MathOp implements IMathOp {
 
 	public static IMathOp getInstance() {
 		if (MathOp.instance == null) {
-			throw new NullPointerException();
+			instance=new MathOp(1.e-5);
 		}
-		return MathOp.instance;
+		return instance;
 	}
 
 	public static IMathOp getInstance(double squareRootCorrectness) {

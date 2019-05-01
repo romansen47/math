@@ -1,6 +1,9 @@
-package matrix;
+package math.matrix;
+
 
 public interface IMatrixTrix {
+	
+	final static math.IMathOp mathOperator=math.MathOp.getInstance();
 
 	default double[] matrixMult(double[][] matrix,double[] vector) {
 		double[] y=new double[matrix.length];

@@ -1,4 +1,4 @@
-package matrix;
+package math.matrix;
 
 public class GaussianElimination {
     private static final double EPSILON = 1e-10;

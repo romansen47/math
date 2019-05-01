@@ -29,11 +29,11 @@ public class Main4 extends regression.Main{
         	}
         };
         
-        double a=20;
+        double a=22;
         double b=0;
-        double[] coeffs=new Minimizer(fun).find(new double[] {a,b,7,3,0.0026580});
+        double[] coeffs=new Minimizer(fun).find(new double[] {a,b,5.8,2.4,0.0027});
 
-        System.out.println("Wert: "+val(a, b,5.750578,2.42977512,3.002701427,newvals));
+        System.out.println("Wert: "+val(a, b,5.750578,2.42977512,0.002701427,newvals));
         System.out.println("Wert: "+val(coeffs[0], coeffs[1], coeffs[2],
         		coeffs[3], coeffs[4], newvals));
         double correlation=correlation(values[0],values[1]);
