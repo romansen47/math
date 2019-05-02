@@ -93,4 +93,36 @@ public interface IMatrix {
 		return Math.sqrt(ans);
 	}
 	
+	default IMatrix add(IMatrix mat) throws Exception {
+		if (getLength()!=mat.getLength() || getHeight()!=mat.getHeight()) {
+			throw new Exception();
+		}
+		double[][] ans=new double[getHeight()][getLength()];
+		for (int i=0;i<getHeight();i++) {
+			for (int j=0;j<getLength();j++) {
+				ans[i][j]=getEntry(i,j)+mat.getEntry(i, j);
+			}
+		}
+		return new Matrix(ans);
+	}
+	
+	default IMatrix scaleBy(double r) throws Exception {
+		double[][] ans=new double[getHeight()][getLength()];
+		for (int i=0;i<getHeight();i++) {
+			for (int j=0;j<getLength();j++) {
+				ans[i][j]=r*getEntry(i,j);
+			}
+		}
+		return new Matrix(ans);
+	}
+	
+	default IMatrix toUnit() throws Exception {
+		return scaleBy(Math.pow(norm(),-1));
+	}
+	
+	default IMatrix getUnit(int i,int j) {
+		double[][] tmp=new double[getHeight()][getLength()];
+		tmp[i][j]=1;
+		return new Matrix(tmp);
+	}
 }
