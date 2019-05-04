@@ -1,11 +1,11 @@
 package math.matrix;
 
-public class Matrix implements IMatrix{
+public class Matrix implements IMatrix {
 
 	private final double[][] values;
-	
+
 	public Matrix(double[][] values) {
-		this.values=values;
+		this.values = values;
 	}
 
 	@Override
@@ -15,18 +15,18 @@ public class Matrix implements IMatrix{
 
 	@Override
 	public String toString() {
-		String ans="";
-		for (int i=0;i<getHeight();i++) {
-			for (int j=0;j<getLength();j++) {
+		String ans = "";
+		for (int i = 0; i < getHeight(); i++) {
+			for (int j = 0; j < getLength(); j++) {
 				try {
-					ans+=getEntry(i,j)+"   ";
-				} catch (Exception e) {
+					ans += getEntry(i, j) + "   ";
+				} catch (final Exception e) {
 					e.printStackTrace();
 				}
 			}
-			ans+="\r";
+			ans += "\r";
 		}
-		
+
 		return ans;
 	}
 

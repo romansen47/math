@@ -25,18 +25,15 @@ public class Main5 extends regression.Main {
 		final IFunction fun = new Function() {
 			@Override
 			public double value(double[] point) {
-				return val(point[0], point[1], 
-						point[2], point[3], point[4], 
-						point[5], point[6], point[7], 
-						newvals)
+				return val(point[0], point[1], point[2], point[3], point[4], point[5], point[6], point[7], newvals)
 						* 1.e-10;
 			}
 		};
 
 		final double a = 22.38025511590738;
 		final double b = -5.180721801045054E-4;
-		final double[] coeffs = new Minimizer(fun).find(
-				new double[] { a, b, 5.952057839617729, 2.494323292555835, 0.0026746014893392765, 5.9520, -3.14/2.0, 0.00001 });
+		final double[] coeffs = new Minimizer(fun).find(new double[] { a, b, 5.952057839617729, 2.494323292555835,
+				0.0026746014893392765, 5.9520, -3.14 / 2.0, 0.00001 });
 
 		final IFunction reg = new Function() {
 			@Override
@@ -47,7 +44,7 @@ public class Main5 extends regression.Main {
 		};
 
 		final double correlation = correlation(values[0], values[1]);
-		//printDataToXml(coeffs, newvals, reg, correlation);
+		// printDataToXml(coeffs, newvals, reg, correlation);
 		System.out.println("Regression: f(x) = " + coeffs[0] + " + ( " + coeffs[1] + " ) * x + " + coeffs[2]
 				+ " * sin ( " + coeffs[3] + " + " + coeffs[4] + " * x )");
 		System.out.println("     + " + coeffs[5] + " * cos ( " + coeffs[6] + " + " + coeffs[7] + " * x )");
@@ -60,8 +57,9 @@ public class Main5 extends regression.Main {
 				+ val(coeffs[0], coeffs[1], coeffs[2], coeffs[3], coeffs[4], coeffs[5], coeffs[6], coeffs[7], newvals));
 		System.out.println("Korrelationskoeffizient = " + correlation);
 
-		double[] out3d=run3d();
-		System.out.println("Brute Force: "+out3d[0]+", "+out3d[1]+", "+out3d[2]+", "+out3d[3]+", "+out3d[4]);
+		final double[] out3d = run3d();
+		System.out.println(
+				"Brute Force: " + out3d[0] + ", " + out3d[1] + ", " + out3d[2] + ", " + out3d[3] + ", " + out3d[4]);
 	}
 
 	private static double[] run3d() {
@@ -91,12 +89,12 @@ public class Main5 extends regression.Main {
 //				}
 //			}
 //		}
-		for (double a = 15; a < 30; a+=1) {
-			System.out.println("a="+a);
+		for (double a = 15; a < 30; a += 1) {
+			System.out.println("a=" + a);
 			for (double b = 0; b < 1; b += 0.1) {
-				System.out.println("b="+b);
+				System.out.println("b=" + b);
 				for (double c = 0; c < 10; c += 1) {
-					System.out.println("c="+c);
+					System.out.println("c=" + c);
 					for (double d = 0; d < 6.5; d += 0.5) {
 						for (double e = 0.0026; e < 6.5; e += 0.5) {
 							final double val = val(a, b, c, d, e, newvals);

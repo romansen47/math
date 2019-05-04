@@ -1,5 +1,5 @@
 package functions;
 
-public abstract class Function implements IFunction{
+public abstract class Function implements IFunction {
 
 }

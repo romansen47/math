@@ -6,7 +6,7 @@ public class MathOp implements IMathOp {
 
 	public static IMathOp getInstance() {
 		if (MathOp.instance == null) {
-			instance=new MathOp(1.e-5);
+			instance = new MathOp(1.e-5);
 		}
 		return instance;
 	}
