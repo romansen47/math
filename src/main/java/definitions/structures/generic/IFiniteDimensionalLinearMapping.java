@@ -6,7 +6,7 @@ import java.util.Map;
 import definitions.structures.abstr.IVec;
 
 public interface IFiniteDimensionalLinearMapping {
-
+	
 	IFiniteDimensionalVectorSpace getSource();
 
 	IFiniteDimensionalVectorSpace getTarget();
@@ -45,12 +45,14 @@ public interface IFiniteDimensionalLinearMapping {
 
 	default double[][] getGenericMatrix() {
 		final double[][] matrix = new double[getTarget().dim()][getSource().dim()];
-		final int i = 0;
-		for (final IVec vec1 : getSource().getGenericBase()) {
-			final int j = 0;
+		int i = 0;
+		for (RealVec vec1 : getSource().getGenericBase()) {
+			int j = 0;
 			for (final IVec vec2 : getTarget().getGenericBase()) {
-				matrix[i][j] = getLinearity((RealVec) vec1).get(vec2);
+				matrix[j][i] = getLinearity(vec1).get(vec2);
+				j++;
 			}
+			i++;
 		}
 		return matrix;
 	}

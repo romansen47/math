@@ -24,7 +24,7 @@ public class RealVec implements IVec {
 		dim = coordinates.length;
 		setCoordinates(new HashMap<>());
 		int i = 0;
-		for (final IVec vec : Generator.getFiniteDimensionalVectorSpace(dim).getGenericBase()) {
+		for (final IVec vec : Generator.getGenerator().getFiniteDimensionalVectorSpace(dim).getGenericBase()) {
 			getCoordinates().put(vec, coordinates[i++]);
 		}
 	}

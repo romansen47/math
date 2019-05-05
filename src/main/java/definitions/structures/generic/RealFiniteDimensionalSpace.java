@@ -9,11 +9,11 @@ import definitions.structures.abstr.IVec;
 
 public class RealFiniteDimensionalSpace implements IFiniteDimensionalVectorSpace {
 
-	final List<IVec> base;
+	final List<RealVec> base;
 
 	final int dim;
 
-	protected RealFiniteDimensionalSpace(List<IVec> basetmp) throws Throwable {
+	protected RealFiniteDimensionalSpace(List<RealVec> basetmp) throws Throwable {
 		dim = basetmp.size();
 		base = basetmp;
 	}
@@ -26,7 +26,7 @@ public class RealFiniteDimensionalSpace implements IFiniteDimensionalVectorSpace
 		double prod = 0;
 		final Map<IVec, Double> vecCoord1 = ((RealVec) vec1).getGenericCoordinates();
 		final Map<IVec, Double> vecCoord2 = ((RealVec) vec2).getGenericCoordinates();
-		final List<IVec> base = getGenericBase();
+		final List<RealVec> base = getGenericBase();
 		for (final IVec vec : base) {
 			prod += vecCoord1.get(vec) * vecCoord2.get(vec);
 		}
@@ -44,7 +44,7 @@ public class RealFiniteDimensionalSpace implements IFiniteDimensionalVectorSpace
 	}
 
 	@Override
-	public final List<IVec> getGenericBase() {
+	public final List<RealVec> getGenericBase() {
 		return base;
 	}
 

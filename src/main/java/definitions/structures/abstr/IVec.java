@@ -3,6 +3,7 @@ package definitions.structures.abstr;
 import java.util.List;
 
 import definitions.structures.generic.Generator;
+import definitions.structures.generic.RealVec;
 
 public interface IVec {
 
@@ -12,8 +13,8 @@ public interface IVec {
 
 	boolean equals(IVec vec) throws Throwable;
 
-	default List<IVec> getGenericBase() throws Throwable {
-		return Generator.getFiniteDimensionalVectorSpace(getDim()).getGenericBase();
+	default List<RealVec> getGenericBase() throws Throwable {
+		return Generator.getGenerator().getFiniteDimensionalVectorSpace(getDim()).getGenericBase();
 	}
 
 }

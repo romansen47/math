@@ -10,7 +10,7 @@ import definitions.structures.abstr.IVec;
 
 public interface IFiniteDimensionalVectorSpace extends IHilbertSpace {
 
-	List<IVec> getGenericBase();
+	List<RealVec> getGenericBase();
 
 	Set<IVec> baseToArray();
 
@@ -35,7 +35,7 @@ public interface IFiniteDimensionalVectorSpace extends IHilbertSpace {
 	default IVec add(IVec vec1, IVec vec2) throws Throwable {
 		if (vec1 instanceof RealVec && vec2 instanceof RealVec
 				&& ((RealVec) vec1).getDim() == (((RealVec) vec2).getDim()) && ((RealVec) vec1).getDim() == dim()) {
-			final List<IVec> base = getGenericBase();
+			final List<RealVec> base = getGenericBase();
 			final Map<IVec, Double> coordinates = new HashMap<>();
 			for (final IVec vec : base) {
 				coordinates.put(vec, ((RealVec) vec1).getGenericCoordinates().get(vec)
@@ -51,7 +51,7 @@ public interface IFiniteDimensionalVectorSpace extends IHilbertSpace {
 		if (vec instanceof RealVec && ((RealVec) vec).getDim() == dim()) {
 			final RealVec Vec = (RealVec) vec;
 			final Map<IVec, Double> stretched = Vec.getGenericCoordinates();
-			final List<IVec> base = getGenericBase();
+			final List<RealVec> base = getGenericBase();
 			for (final IVec vec1 : base) {
 				stretched.put(vec1, stretched.get(vec1) * r);
 			}
