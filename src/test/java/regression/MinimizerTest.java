@@ -1,10 +1,10 @@
 package regression;
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import functions.Function;
-import junit.framework.Assert;
 
 public class MinimizerTest {
 
@@ -27,7 +27,6 @@ public class MinimizerTest {
 		minimum = min.find(new double[] { 2.0 });// ,1.001 });
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void test() {
 		Assert.assertTrue(Math.abs(minimum[0] - 1) < 1.e-3);// && minimum[1]==1);

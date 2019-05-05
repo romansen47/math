@@ -59,7 +59,6 @@ public class Main {
 
 	protected static double[][] readFile(String string) throws IOException {
 		final List<double[]> values = new ArrayList<>();
-		@SuppressWarnings("resource")
 		final BufferedReader br = new BufferedReader(new FileReader(string));
 		String line = "";
 		LocalDate firstDate = null;

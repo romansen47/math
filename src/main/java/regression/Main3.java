@@ -86,6 +86,7 @@ public class Main3 extends regression.Main {
 		return ans;
 	}
 
+	@SuppressWarnings("unused")
 	private static double[][] getAsinVals(double[][] newvals) {
 		final double max = getMax(newvals);
 		final double[][] normvals = normalizeValues(max, newvals);
@@ -107,6 +108,7 @@ public class Main3 extends regression.Main {
 		return normvals;
 	}
 
+	@SuppressWarnings("unused")
 	private static double getMin(double[][] newvals) {
 		double min = Math.abs(newvals[1][0]);
 		for (int i = 0; i < newvals[0].length; i++) {

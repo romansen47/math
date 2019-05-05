@@ -35,6 +35,7 @@ public class Main5 extends regression.Main {
 		final double[] coeffs = new Minimizer(fun).find(new double[] { a, b, 5.952057839617729, 2.494323292555835,
 				0.0026746014893392765, 5.9520, -3.14 / 2.0, 0.00001 });
 
+		@SuppressWarnings("unused")
 		final IFunction reg = new Function() {
 			@Override
 			public double value(double[] input) {
@@ -116,6 +117,7 @@ public class Main5 extends regression.Main {
 		return new double[] { a0, b0, c0, d0, e0 };
 	}
 
+	@SuppressWarnings("unused")
 	private static void printDataToXml(double[] coeffs, double[][] newvals2, IFunction fun, double correlation)
 			throws IOException {
 		final double length = (int) (newvals2[0][newvals2[0].length - 1]);
