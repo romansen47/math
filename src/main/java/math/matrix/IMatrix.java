@@ -32,7 +32,7 @@ public interface IMatrix {
 		return getValues()[i][j];
 	}
 
-	default IMatrix inverse() throws Exception {
+	default IMatrix inverse() throws Throwable {
 		return new Matrix(operator.inverse(getValues()));
 	}
 

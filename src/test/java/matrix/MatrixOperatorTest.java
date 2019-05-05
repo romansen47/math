@@ -62,7 +62,7 @@ public class MatrixOperatorTest {
 	}
 
 	@Test
-	public void inverse() {
+	public void inverse() throws Throwable {
 		final double[][] inverse1 = MatOp.inverse(Matrix1);
 		final double[][] inverse2 = MatOp.inverse(Matrix2);
 

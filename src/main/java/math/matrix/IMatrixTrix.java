@@ -55,7 +55,14 @@ public interface IMatrixTrix {
 		return det;
 	}
 
-	default double[][] inverse(double[][] matrix) {
+	default double[][] inverse(double[][] matrix) throws Throwable {
+		if (matrix.length == 1 && matrix[0].length == 1) {
+			final double in = matrix[0][0];
+			if (in == 0.) {
+				throw new Throwable();
+			}
+			return new double[][] { { 1. / in } };
+		}
 		final int k = matrix.length;
 		final double[][] inv = new double[k][k];
 		double det;
