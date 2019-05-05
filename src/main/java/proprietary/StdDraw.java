@@ -223,7 +223,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Set the X scale (a border is added to the values)
-	 * 
+	 *
 	 * @param min the minimum value of the X scale
 	 * @param max the maximum value of the X scale
 	 */
@@ -235,7 +235,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Set the Y scale (a border is added to the values)
-	 * 
+	 *
 	 * @param min the minimum value of the Y scale
 	 * @param max the maximum value of the Y scale
 	 */
@@ -280,7 +280,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Clear the screen with the given color.
-	 * 
+	 *
 	 * @param color the Color to make the background
 	 */
 	public static void clear(Color color) {
@@ -299,7 +299,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Set the pen size to the given size
-	 * 
+	 *
 	 * @param r the radius of the pen
 	 * @throws RuntimeException if r is negative
 	 */
@@ -323,7 +323,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 	 * Set the pen color to the given color. The available pen colors are BLACK,
 	 * BLUE, CYAN, DARK_GRAY, GRAY, GREEN, LIGHT_GRAY, MAGENTA, ORANGE, PINK, RED,
 	 * WHITE, and YELLOW.
-	 * 
+	 *
 	 * @param color the Color to make the pen
 	 */
 	public static void setPenColor(Color color) {
@@ -340,7 +340,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Set the font as given for all string writing
-	 * 
+	 *
 	 * @param f the font to make text
 	 */
 	public static void setFont(Font f) {
@@ -353,7 +353,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Draw a line from (x0, y0) to (x1, y1)
-	 * 
+	 *
 	 * @param x0 the x-coordinate of the starting point
 	 * @param y0 the y-coordinate of the starting point
 	 * @param x1 the x-coordinate of the destination point
@@ -366,7 +366,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Draw one pixel at (x, y)
-	 * 
+	 *
 	 * @param x the x-coordinate of the pixel
 	 * @param y the y-coordinate of the pixel
 	 */
@@ -376,7 +376,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Draw a point at (x, y)
-	 * 
+	 *
 	 * @param x the x-coordinate of the point
 	 * @param y the y-coordinate of the point
 	 */
@@ -397,7 +397,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Draw circle of radius r, centered on (x, y); degenerate to pixel if small
-	 * 
+	 *
 	 * @param x the x-coordinate of the center of the circle
 	 * @param y the y-coordinate of the center of the circle
 	 * @param r the radius of the circle
@@ -422,7 +422,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 	/**
 	 * Draw filled circle of radius r, centered on (x, y); degenerate to pixel if
 	 * small
-	 * 
+	 *
 	 * @param x the x-coordinate of the center of the circle
 	 * @param y the y-coordinate of the center of the circle
 	 * @param r the radius of the circle
@@ -447,7 +447,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 	/**
 	 * Draw an arc of radius r, centered on (x, y), from angle1 to angle2 (in
 	 * degrees).
-	 * 
+	 *
 	 * @param x      the x-coordinate of the center of the circle
 	 * @param y      the y-coordinate of the center of the circle
 	 * @param r      the radius of the circle
@@ -478,7 +478,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 	/**
 	 * Draw squared of side length 2r, centered on (x, y); degenerate to pixel if
 	 * small
-	 * 
+	 *
 	 * @param x the x-coordinate of the center of the square
 	 * @param y the y-coordinate of the center of the square
 	 * @param r radius is half the length of any side of the square
@@ -503,7 +503,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 	/**
 	 * Draw a filled square of side length 2r, centered on (x, y); degenerate to
 	 * pixel if small
-	 * 
+	 *
 	 * @param x the x-coordinate of the center of the square
 	 * @param y the y-coordinate of the center of the square
 	 * @param r radius is half the length of any side of the square
@@ -527,7 +527,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Draw a polygon with the given (x[i], y[i]) coordinates
-	 * 
+	 *
 	 * @param x an array of all the x-coordindates of the polygon
 	 * @param y an array of all the y-coordindates of the polygon
 	 */
@@ -545,7 +545,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Draw a filled polygon with the given (x[i], y[i]) coordinates
-	 * 
+	 *
 	 * @param x an array of all the x-coordindates of the polygon
 	 * @param y an array of all the y-coordindates of the polygon
 	 */
@@ -594,7 +594,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Draw picture (gif, jpg, or png) centered on (x, y).
-	 * 
+	 *
 	 * @param x the center x-coordinate of the image
 	 * @param y the center y-coordinate of the image
 	 * @param s the name of the image/picture, e.g., "ball.gif"
@@ -617,7 +617,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 	/**
 	 * Draw picture (gif, jpg, or png) centered on (x, y), rotated given number of
 	 * degrees
-	 * 
+	 *
 	 * @param x       the center x-coordinate of the image
 	 * @param y       the center y-coordinate of the image
 	 * @param s       the name of the image/picture, e.g., "ball.gif"
@@ -643,7 +643,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Draw picture (gif, jpg, or png) centered on (x, y). Rescaled to w-by-h.
-	 * 
+	 *
 	 * @param x the center x coordinate of the image
 	 * @param y the center y coordinate of the image
 	 * @param s the name of the image/picture, e.g., "ball.gif"
@@ -671,7 +671,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 	/**
 	 * Draw picture (gif, jpg, or png) centered on (x, y), rotated given number of
 	 * degrees, rescaled to w-by-h.
-	 * 
+	 *
 	 * @param x       the center x-coordinate of the image
 	 * @param y       the center y-coordinate of the image
 	 * @param s       the name of the image/picture, e.g., "ball.gif"
@@ -707,7 +707,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Write the given text string in the current font, center on (x, y).
-	 * 
+	 *
 	 * @param x the center x coordinate of the text
 	 * @param y the center y coordinate of the text
 	 * @param s the text
@@ -728,7 +728,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 	 * that the screen will NOT be redrawn after each line(), circle(), or square().
 	 * This is useful when there are many methods to call to draw a complete
 	 * picture.
-	 * 
+	 *
 	 * @param t number of milliseconds
 	 * @throws InterruptedException
 	 */
@@ -759,7 +759,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Save to file - suffix must be png, jpg, or gif.
-	 * 
+	 *
 	 * @param filename the name of the file with one of the required suffixes
 	 */
 	public static void save(String filename) {
@@ -818,7 +818,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Is the mouse being pressed?
-	 * 
+	 *
 	 * @return true or false
 	 */
 	public static boolean mousePressed() {
@@ -827,7 +827,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Where is the mouse?
-	 * 
+	 *
 	 * @return the value of the x-coordinate of the mouse
 	 */
 	public static double mouseX() {
@@ -836,7 +836,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Where is the mouse?
-	 * 
+	 *
 	 * @return the value of the y-coordinate of the mouse
 	 */
 	public static double mouseY() {
@@ -913,7 +913,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * Has the user typed a key?
-	 * 
+	 *
 	 * @return true if the user has typed a key, false otherwise
 	 */
 	public static boolean hasNextKeyTyped() {
@@ -922,7 +922,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 	/**
 	 * What is the next key that was typed by the user?
-	 * 
+	 *
 	 * @return the next key typed
 	 */
 	public static char nextKeyTyped() {

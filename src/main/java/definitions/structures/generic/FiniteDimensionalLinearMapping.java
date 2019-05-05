@@ -2,8 +2,6 @@ package definitions.structures.generic;
 
 import java.util.Map;
 
-import definitions.structures.abstr.IVec;
-
 public class FiniteDimensionalLinearMapping implements IFiniteDimensionalLinearMapping {
 
 	private final IFiniteDimensionalVectorSpace source;

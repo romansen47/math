@@ -17,7 +17,7 @@ public interface IFiniteDimensionalVectorSpace extends IHilbertSpace {
 	int dim();
 
 	default Map<IVec, Double> getCoordinates(IVec vec) throws Throwable {
-		if (this.contains(vec)) {
+		if (contains(vec)) {
 			return ((RealVec) vec).getCoordinates();
 		} else {
 			throw new Throwable();

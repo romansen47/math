@@ -233,7 +233,7 @@ public class Functions {
 
 	/*
 	 * public static natural mult2(natural tmp1, natural tmp2) {
-	 * 
+	 *
 	 * }
 	 */
 }
