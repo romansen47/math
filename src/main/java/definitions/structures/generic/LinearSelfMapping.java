@@ -9,10 +9,4 @@ public class LinearSelfMapping extends FiniteDimensionalLinearMapping implements
 		super(source, source, linearity);
 	}
 
-	@Override
-	public double det() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

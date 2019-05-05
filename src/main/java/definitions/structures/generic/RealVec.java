@@ -20,7 +20,7 @@ public class RealVec implements IVec {
 
 	private Map<IVec, Double> coordinates;
 
-	public RealVec(double[] coordinates) throws Throwable {
+	protected RealVec(double[] coordinates) throws Throwable {
 		dim = coordinates.length;
 		setCoordinates(new HashMap<>());
 		int i = 0;
@@ -29,12 +29,12 @@ public class RealVec implements IVec {
 		}
 	}
 
-	public RealVec(Map<IVec, Double> coordinates) throws Throwable {
+	protected RealVec(Map<IVec, Double> coordinates) throws Throwable {
 		setCoordinates(coordinates);
 		dim = coordinates.keySet().size();
 	}
 
-	public RealVec(int dim) {
+	protected RealVec(int dim) {
 		this.dim = dim;
 		coordinates = new HashMap<>();
 	}

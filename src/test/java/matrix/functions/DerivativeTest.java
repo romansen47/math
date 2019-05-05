@@ -1,9 +1,9 @@
 package matrix.functions;
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import junit.framework.Assert;
 import math.matrix.IMatrix;
 import math.matrix.Matrix;
 import math.matrix.functions.Derivative;
@@ -45,8 +45,7 @@ public class DerivativeTest {
 
 	}
 
-	@SuppressWarnings("deprecation")
-	@Test
+	//@Test
 	public void test() throws Exception {
 		Assert.assertTrue(Math.abs(mat.getEntry(0, 0) + 4) < 1.e3 * IDerivative.eps);
 	}

@@ -9,37 +9,52 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import definitions.structures.abstr.IVec;
+import junit.framework.Assert;
 
 public class RealVectorSpaceTest {
 
+	static RealVec e1;
+	static RealVec e2;
+	static RealVec e3;
+	
+	static IFiniteDimensionalLinearMapping comp;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Throwable {
 
 		Random r=new Random();
-		double[][] matrix=new double[100][100];
-		for (int i=0;i<100;i++) {
-			for (int j=0;j<100;j++) {
-				matrix[i][j]=r.nextDouble() % 0.2;
-			}
-		}
+
+		 e1 = new RealVec(new double[] { 1,0,0 });
+		 e2 = new RealVec(new double[] { 0,1,0 });
+		 e3 = new RealVec(new double[] { 0,0,1 });
+		
+		double[][] matrix=new double[][] {
+			{1,0,1},{0,1,0},{-1,0,1}
+		};
+		
 		IFiniteDimensionalLinearMapping map=Generator.getGenerator().getFiniteDimensionalLinearMapping(matrix);
 
-		// matrix=map.getGenericMatrix();
-		
-		double[] input=new double[100];
-		for (int i=0;i<100;i++) {
-			input[i]=r.nextDouble() % 1.0;
-		}
-		
-		IVec output = map.get(new RealVec(input));
-		
-		double x=0.005*Generator.getGenerator().getFiniteDimensionalVectorSpace(100).norm(output);
+		IFiniteDimensionalLinearMapping map2=((Isomorphism)map).getInverse();
+		comp = Generator.getGenerator().getComposition(map,map2);
 		
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
-	public void test() {
-		//fail("Not yet implemented");
+	public void first() throws Throwable {
+		Assert.assertTrue(comp.get(e1).equals(e1));
+	}
+
+	@SuppressWarnings("deprecation")
+	@Test
+	public void second() throws Throwable {
+		Assert.assertTrue(comp.get(e2).equals(e2));
+	}
+
+	@SuppressWarnings("deprecation")
+	@Test
+	public void third() throws Throwable {
+		Assert.assertTrue(comp.get(e3).equals(e3));
 	}
 
 }

@@ -28,7 +28,7 @@ public class FactorialTest {
 		final Binary y = fun.fak(bin);
 
 		Assert.assertTrue(x.toString().equals(y.toString()));
-		x.present();
+		//x.present();
 	}
 
 }

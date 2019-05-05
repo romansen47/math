@@ -12,7 +12,6 @@ public class MatrixOperator implements IMatrixTrix {
 	}
 
 	private MatrixOperator() {
-
 	}
 
 }

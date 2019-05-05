@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import math.matrix.MatrixOperator;
+
 public interface IGenerator {
 
 	Map<Integer, IFiniteDimensionalVectorSpace> getCachedSpaces();
@@ -26,6 +28,29 @@ public interface IGenerator {
 			getCachedSpaces().put(Integer.valueOf(dim), new RealFiniteDimensionalSpace(basetmp));
 		}
 		return getCachedSpaces().get(dim);
+	}
+	
+	default IFiniteDimensionalLinearMapping getComposition(
+			IFiniteDimensionalLinearMapping A,
+			IFiniteDimensionalLinearMapping B) throws Throwable{
+		double[][] matA=A.getGenericMatrix();
+		double[][] matB=B.getGenericMatrix();
+		return getFiniteDimensionalLinearMapping(composition(matA,matB));
+	}
+
+	default double[][] composition(double[][] matA, double[][] matB) throws Throwable{
+		if (matA[0].length != matB.length) {
+			throw new Throwable();
+		}
+		double[][] matC=new double[matA.length][matB[0].length];
+		for (int i=0;i<matA.length;i++) {
+			for (int j=0;j<matB[0].length;j++) {
+				for (int k=0;k<matA[0].length;k++) {
+					matC[i][j]+=matA[i][k]*matB[k][j];
+				}
+			}
+		}
+		return matC;
 	}
 
 	default IFiniteDimensionalLinearMapping getFiniteDimensionalLinearMapping(double[][] genericMatrix)
@@ -53,7 +78,7 @@ public interface IGenerator {
 			if (ans.det() == 0) {
 				return ans;
 			} else {
-				return ans;
+				return new InvertibleFiniteDimensionalLinearMapping(source,coordinates) ;
 			}
 		}
 	}
