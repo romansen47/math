@@ -13,7 +13,7 @@ public class Minimizer {
 	final IFunction fun;
 	final Derivative der;
 
-	final double eps = 1.e-7;
+	final double eps = 1.e-6;
 
 	public Minimizer(IFunction fun) {
 		this.fun = fun;
